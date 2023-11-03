@@ -1,14 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Line Tracing</title>
-</head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
 
+        #canvas {
+            display: block; /* To avoid bottom margin/padding issues */
+            margin: 0 auto; /* Center the canvas horizontally */
+            margin-bottom: 10px;
+            border:1px solid #ddd; /* Light grey border */
+            touch-action: none; /* Prevent default touch actions like scrolling */
+        }
+
+        div {
+            margin-bottom: 5px;
+        }
+
+        button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Smooth transition for button background color */
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        input[type=range] {
+            width: 100%; /* Full-width for better responsiveness */
+            margin: 10px 0; /* Spacing above and below */
+        }
+
+        .controls {
+            text-align: center; /* Center the controls under the canvas */
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
 <body>
-    <canvas id="canvas" width="500" height="500" style="border:1px solid black;"></canvas>
+    <canvas id="canvas" width="500" height="500"></canvas>
     <div>Number of Entries: <span id="entryCount">0</span></div>
     <div>
         Timelapse Speed: <input type="range" id="speedSlider" min="100" max="2000" value="500" />ms
@@ -16,9 +64,11 @@
     <div>
         Loop Playback: <input type="checkbox" id="loopCheckbox" />
     </div>
-    <button onclick="saveTracing()">Save</button>
-    <button onclick="playbackTracings()">Play Time Lapse</button>
-    <button onclick="resetExercise()">Reset</button>
+    <div class="container controls">
+        <button onclick="saveTracing()">Save</button>
+        <button onclick="playbackTracings()">Play Time Lapse</button>
+        <button onclick="resetExercise()">Reset</button>
+    </div>
 
     <script>
         const canvas = document.getElementById('canvas');
@@ -143,5 +193,4 @@ canvas.addEventListener('touchend', (e) => {
         resetExercise();
     </script>
 </body>
-
 </html>
